@@ -2,26 +2,50 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         TvShow tv = new TvShow();
 
-        System.out.print("Channel number: ");
-        tv.setChannelNumber(sc.nextInt());
+        while (true) {
+            try {
+                System.out.print("Channel number: ");
+                tv.setChannelNumber(scanner.nextInt());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-        System.out.print("Year: ");
-        int year = sc.nextInt();
-        System.out.print("Month: ");
-        int month = sc.nextInt();
-        System.out.print("Day: ");
-        int day = sc.nextInt();
-        System.out.print("Hour: ");
-        int hour = sc.nextInt();
-        System.out.print("Minute: ");
-        int minute = sc.nextInt();
-        tv.setStartTime(year, month, day, hour, minute);
+        int year, month, day, hour, minute;
 
-        System.out.print("Duration (minutes): ");
-        tv.setDuration(sc.nextInt());
+        while (true) {
+            try {
+                System.out.print("Year: ");
+                year = scanner.nextInt();
+                System.out.print("Month: ");
+                month = scanner.nextInt();
+                System.out.print("Day: ");
+                day = scanner.nextInt();
+                System.out.print("Hour: ");
+                hour = scanner.nextInt();
+                System.out.print("Minute: ");
+                minute = scanner.nextInt();
+
+                tv.setStartTime(year, month, day, hour, minute);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                System.out.print("Duration (minutes): ");
+                tv.setDuration(scanner.nextInt());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         System.out.println("Recording scheduled:");
         System.out.println("Channel: " + tv.getChannelNumber());
