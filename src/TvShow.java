@@ -14,8 +14,10 @@ public class TvShow {
     }
 
     public void setStartTime(int year, int month, int day, int hour, int minute) {
-        if (year < 1) {
-            throw new IllegalArgumentException("Invalid year");
+        int currentYear = LocalDateTime.now().getYear();
+        
+        if (year < currentYear) {
+            throw new IllegalArgumentException("Year cannot be in the past (must be " + currentYear + " or later).");
         }
         if (month < 1 || month > 12) {
             throw new IllegalArgumentException("Invalid month");
